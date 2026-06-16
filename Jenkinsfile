@@ -21,8 +21,8 @@ pipeline {
             steps {
                 // 3. 젠킨스 웹에 저장한 'dockerhub-creds' 열쇠를 꺼내와서 도커허브에 로그인하고 이미지를 푸시합니다.
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker push finish07sds/dev01:1.0'
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+	            sh 'docker push finish07sds/dev01:1.0'
                 }
             }
         }

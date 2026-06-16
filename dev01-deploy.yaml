@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev01-nginx
+  labels:
+    app: dev01-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dev01-web
+  template:
+    metadata:
+      labels:
+        app: dev01-web
+    spec:
+      containers:
+      - name: nginx
+        image: finish07sds/dev01:1.0
+        ports:
+        - containerPort: 80
